@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SizedBox.expand(
           child: RadialMenu(),
@@ -87,22 +88,22 @@ class RadialAnimation extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: <Widget>[
-              _buildButton(0,
-                  color: Colors.red, icon: FontAwesomeIcons.thumbtack),
-              _buildButton(45,
-                  color: Colors.green, icon: FontAwesomeIcons.sprayCan),
-              _buildButton(90,
-                  color: Colors.orange, icon: FontAwesomeIcons.stackOverflow),
-              _buildButton(135,
-                  color: Colors.blue, icon: FontAwesomeIcons.kiwiBird),
-              _buildButton(180,
-                  color: Colors.yellow, icon: FontAwesomeIcons.laptop),
-              _buildButton(225,
-                  color: Colors.purple, icon: FontAwesomeIcons.industry),
-              _buildButton(270,
-                  color: Colors.teal, icon: FontAwesomeIcons.bandcamp),
-              _buildButton(315,
-                  color: Colors.pink, icon: FontAwesomeIcons.firefox),
+              _buildButton(0, 'Train Arrivals',
+                  color: Colors.red, icon: FontAwesomeIcons.personBooth),
+              _buildButton(45, 'Train Fare Enquiry',
+                  color: Colors.green, icon: FontAwesomeIcons.moneyBill),
+              _buildButton(90, 'Live Train Status',
+                  color: Colors.cyan[400], icon: FontAwesomeIcons.hourglass),
+              _buildButton(135, 'Train Between Statios',
+                  color: Colors.blue, icon: FontAwesomeIcons.landmark),
+              _buildButton(180, 'Train Route',
+                  color: Colors.yellow[900], icon: FontAwesomeIcons.route),
+              _buildButton(225, 'Train Name/Number',
+                  color: Colors.purple, icon: FontAwesomeIcons.train),
+              _buildButton(270, 'PNR Status',
+                  color: Colors.teal, icon: FontAwesomeIcons.infoCircle),
+              _buildButton(315, 'Seat Availability',
+                  color: Colors.pink, icon: FontAwesomeIcons.chair),
               Transform.scale(
                 scale: scale.value - 1.5,
                 child: FloatingActionButton(
@@ -114,8 +115,9 @@ class RadialAnimation extends StatelessWidget {
               Transform.scale(
                 scale: scale.value,
                 child: FloatingActionButton(
-                  child: Icon(FontAwesomeIcons.solidDotCircle),
+                  child: Icon(FontAwesomeIcons.train),
                   onPressed: _open,
+                  backgroundColor: Colors.black,
                 ),
               ),
             ],
@@ -133,7 +135,12 @@ class RadialAnimation extends StatelessWidget {
     controller.reverse();
   }
 
-  _buildButton(double angle, {Color color, IconData icon}) {
+  _buildButton(
+    double angle,
+    String text, {
+    Color color,
+    IconData icon,
+  }) {
     final double rad = radians(angle);
     return Transform(
       transform: Matrix4.identity()
@@ -145,6 +152,7 @@ class RadialAnimation extends StatelessWidget {
         child: Icon(icon),
         backgroundColor: color,
         onPressed: _close,
+        tooltip: text,
       ),
     );
   }
