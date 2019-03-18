@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:vector_math/vector_math.dart' show radians;
+
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:radio_button/second_route.dart';
+import 'package:vector_math/vector_math.dart' show radians;
 
 void main() => runApp(MyApp());
 
@@ -82,32 +84,33 @@ class RadialAnimation extends StatelessWidget {
   build(context) {
     return AnimatedBuilder(
       animation: controller,
-      builder: (context, builder) {
+      builder: (currentContext, builder) {
         return Transform.rotate(
           angle: radians(rotation.value),
           child: Stack(
             alignment: Alignment.center,
             children: <Widget>[
-              _buildButton(0, 'Train Arrivals',
+              _buildButton(currentContext, 0, 'Train Arrivals',
                   color: Colors.red, icon: FontAwesomeIcons.personBooth),
-              _buildButton(45, 'Train Fare Enquiry',
+              _buildButton(currentContext, 45, 'Train Fare Enquiry',
                   color: Colors.green, icon: FontAwesomeIcons.moneyBill),
-              _buildButton(90, 'Live Train Status',
+              _buildButton(currentContext, 90, 'Live Train Status',
                   color: Colors.cyan[400], icon: FontAwesomeIcons.hourglass),
-              _buildButton(135, 'Train Between Statios',
+              _buildButton(currentContext, 135, 'Train Between Statios',
                   color: Colors.blue, icon: FontAwesomeIcons.landmark),
-              _buildButton(180, 'Train Route',
+              _buildButton(currentContext, 180, 'Train Route',
                   color: Colors.yellow[900], icon: FontAwesomeIcons.route),
-              _buildButton(225, 'Train Name/Number',
+              _buildButton(currentContext, 225, 'Train Name/Number',
                   color: Colors.purple, icon: FontAwesomeIcons.train),
-              _buildButton(270, 'PNR Status',
+              _buildButton(currentContext, 270, 'PNR Status',
                   color: Colors.teal, icon: FontAwesomeIcons.infoCircle),
-              _buildButton(315, 'Seat Availability',
-                  color: Colors.pink, icon: FontAwesomeIcons.chair),
+              _buildButton(currentContext, 315, 'Seat Availability',
+                  color: Colors.pinkAccent, icon: FontAwesomeIcons.chair),
               Transform.scale(
                 scale: scale.value - 1.5,
                 child: FloatingActionButton(
                   child: Icon(FontAwesomeIcons.timesCircle),
+                  heroTag: "close",
                   onPressed: _close,
                   backgroundColor: Colors.red,
                 ),
@@ -116,6 +119,7 @@ class RadialAnimation extends StatelessWidget {
                 scale: scale.value,
                 child: FloatingActionButton(
                   child: Icon(FontAwesomeIcons.train),
+                  heroTag: "open",
                   onPressed: _open,
                   backgroundColor: Colors.black,
                 ),
@@ -136,6 +140,7 @@ class RadialAnimation extends StatelessWidget {
   }
 
   _buildButton(
+    final BuildContext context,
     double angle,
     String text, {
     Color color,
@@ -151,7 +156,19 @@ class RadialAnimation extends StatelessWidget {
       child: FloatingActionButton(
         child: Icon(icon),
         backgroundColor: color,
-        onPressed: _close,
+        heroTag: text,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (anotherContext) {
+              return SecondRoute(
+                text: text,
+                color: color,
+                icon: icon,
+              );
+            }),
+          );
+        },
         tooltip: text,
       ),
     );
