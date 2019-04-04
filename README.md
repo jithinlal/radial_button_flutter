@@ -1,16 +1,14 @@
 # radio_button
 
-A new Flutter project.
+A sample radio button app.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This is a skeleton structure for your next big app with simple home UI as possible.
 
-A few resources to get you started if this is your first Flutter project:
+You can attach another page routes in the onPressed method of the buttons and
+also add more buttons that can be used accordingly.
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+Change the assets image in the assets folder.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Currently this app is a starting point to a wonderful railway info app.
