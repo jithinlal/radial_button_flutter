@@ -13,8 +13,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: SizedBox.expand(
-          child: RadialMenu(),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/img/icon.jpg'),
+              fit: BoxFit.fill,
+            ),
+          ),
+          child: SizedBox.expand(
+            child: RadialMenu(),
+          ),
         ),
       ),
     );
