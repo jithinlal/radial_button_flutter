@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:radio_button/second_route.dart';
 import 'package:vector_math/vector_math.dart' show radians;
+
 void main() => runApp(MyApp());
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,10 +20,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class RadialMenu extends StatefulWidget {
   @override
   _RadialMenuState createState() => _RadialMenuState();
 }
+
 class _RadialMenuState extends State<RadialMenu>
     with SingleTickerProviderStateMixin {
   AnimationController controller;
@@ -33,11 +37,13 @@ class _RadialMenuState extends State<RadialMenu>
       vsync: this,
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return RadialAnimation(controller: controller);
   }
 }
+
 class RadialAnimation extends StatelessWidget {
   RadialAnimation({Key key, this.controller})
       : scale = Tween<double>(
@@ -114,12 +120,15 @@ class RadialAnimation extends StatelessWidget {
       },
     );
   }
+
   _open() {
     controller.forward();
   }
+
   _close() {
     controller.reverse();
   }
+
   _buildButton(
     final BuildContext context,
     double angle,
