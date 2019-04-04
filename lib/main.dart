@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:radio_button/second_route.dart';
 import 'package:vector_math/vector_math.dart' show radians;
 
 void main() => runApp(MyApp());
@@ -156,16 +155,7 @@ class RadialAnimation extends StatelessWidget {
         backgroundColor: color,
         heroTag: text,
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (anotherContext) {
-              return SecondRoute(
-                text: text,
-                color: color,
-                icon: icon,
-              );
-            }),
-          );
+          // some function
         },
       ),
     );
